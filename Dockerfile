@@ -8,6 +8,10 @@ FROM ${BASE_IMAGE}
 
 USER root
 
+# Compile cache dir for NODE_COMPILE_CACHE (startup optimisation)
+RUN mkdir -p /var/tmp/openclaw-compile-cache \
+    && chown 1500:1500 /var/tmp/openclaw-compile-cache
+
 # UID/GID in one layer (almost never changes)
 RUN usermod -u 1500 node \
     && groupmod -g 1500 node \
