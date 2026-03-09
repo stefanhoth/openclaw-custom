@@ -4,7 +4,7 @@
   "pinDigests": false,
   "packageRules": [
     {
-      "matchPackageNames": ["ghcr.io/openclaw/openclaw"],
+      "matchPackageNames": ["ghcr.io/openclaw/openclaw", "openclaw/openclaw"],
       "groupName": "openclaw base image"
     }
   ],
