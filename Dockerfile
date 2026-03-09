@@ -43,10 +43,10 @@ RUN npm install -g mcporter playwright \
 
 # Playwright browser binaries as node user, system deps as root
 USER node
-RUN npx playwright install
+RUN npx playwright install chromium
 
 USER root
-RUN npx playwright install-deps \
+RUN npx playwright install-deps chromium \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
