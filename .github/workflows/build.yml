@@ -10,6 +10,10 @@ on:
         description: "Base image override (e.g. ghcr.io/openclaw/openclaw-browser:2026.3.7)"
         required: false
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository_owner }}/openclaw-custom
