@@ -2,6 +2,12 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base"],
   "pinDigests": false,
+  "packageRules": [
+    {
+      "matchPackageNames": ["ghcr.io/openclaw/openclaw"],
+      "groupName": "openclaw base image"
+    }
+  ],
   "customManagers": [
     {
       "customType": "regex",
