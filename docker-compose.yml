@@ -100,9 +100,9 @@ services:
     deploy:
       resources:
         limits:
-          memory: 400m
+          memory: 1.5g
         reservations:
-          memory: 128m
+          memory: 256m
 
 networks:
   default:
