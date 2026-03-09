@@ -50,6 +50,7 @@ jobs:
             image="${{ env.DEFAULT_BASE_IMAGE }}"
           fi
           echo "image=${image}" >> "$GITHUB_OUTPUT"
+          echo "version=${image##*:}" >> "$GITHUB_OUTPUT"
 
       - name: Resolve image tags
         id: tags
@@ -79,6 +80,7 @@ jobs:
             echo "org.opencontainers.image.created=${created}"
             echo "org.opencontainers.image.source=https://github.com/${{ github.repository }}"
             echo "org.opencontainers.image.base.name=${{ steps.base.outputs.image }}"
+            echo "org.opencontainers.image.base.version=${{ steps.base.outputs.version }}"
             echo "EOF"
           } >> "$GITHUB_OUTPUT"
 
