@@ -75,6 +75,7 @@ jobs:
             echo "org.opencontainers.image.revision=${GITHUB_SHA}"
             echo "org.opencontainers.image.version=${GITHUB_SHA::8}"
             echo "org.opencontainers.image.created=${created}"
+            echo "org.opencontainers.image.source=https://github.com/${{ github.repository }}"
             echo "org.opencontainers.image.base.name=${{ steps.base.outputs.image }}"
             echo "EOF"
           } >> "$GITHUB_OUTPUT"
