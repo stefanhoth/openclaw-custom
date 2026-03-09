@@ -15,7 +15,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository_owner }}/openclaw-custom
-  DEFAULT_BASE_IMAGE: ghcr.io/openclaw/openclaw-browser:latest
+  DEFAULT_BASE_IMAGE: ghcr.io/openclaw/openclaw-browser:2026.3.7
 
 jobs:
   build:
