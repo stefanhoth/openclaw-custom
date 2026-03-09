@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-workflow_dispatch:
+  workflow_dispatch:
     inputs:
       base_image:
         description: "Base image override (e.g. ghcr.io/openclaw/openclaw-browser:2026.3.7)"
