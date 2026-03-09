@@ -4,9 +4,7 @@ on:
   push:
     branches:
       - main
-  schedule:
-    - cron: "0 4 * * 1" # weekly on Monday — picks up base image updates
-  workflow_dispatch:
+workflow_dispatch:
     inputs:
       base_image:
         description: "Base image override (e.g. ghcr.io/openclaw/openclaw-browser:2026.3.7)"
