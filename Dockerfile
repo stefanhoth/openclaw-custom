@@ -54,7 +54,6 @@ RUN npx playwright install-deps chromium \
     && rm -rf /var/lib/apt/lists/*
 
 # Ensure OpenClaw can find playwright's chromium without config changes
-RUN ln -s $(find /home/node/.cache/ms-playwright -name "chrome" -path "*/chrome-linux64/chrome" | head -1) /usr/local/bin/chromium
-ENV OPENCLAW_BROWSER_EXECUTABLE_PATH=/usr/local/bin/chromium
+RUN ln -s $(find /home/node/.cache/ms-playwright -name "chrome" -path "*/chrome-linux64/chrome" | head -1) /usr/bin/chromium
 
 USER node
