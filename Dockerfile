@@ -57,3 +57,6 @@ RUN npx playwright install-deps chromium \
 RUN ln -s $(find /home/node/.cache/ms-playwright -name "chrome" -path "*/chrome-linux64/chrome" | head -1) /usr/bin/chromium
 
 USER node
+# ensure openclaw creates folders/files with group-writable rights to allow for cross-user collaboration
+CMD ["sh", "-c", "umask 0002 && node openclaw.mjs gateway --allow-unconfigured"]
+
