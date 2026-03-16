@@ -35,6 +35,7 @@ RUN mkdir -p -m 755 /etc/apt/keyrings \
     curl \
     git \
     gh \
+    poppler-utils \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
