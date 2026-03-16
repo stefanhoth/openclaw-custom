@@ -14,6 +14,7 @@ services:
       CLAUDE_AI_SESSION_KEY: ${CLAUDE_AI_SESSION_KEY:-}
       CLAUDE_WEB_SESSION_KEY: ${CLAUDE_WEB_SESSION_KEY:-}
       CLAUDE_WEB_COOKIE: ${CLAUDE_WEB_COOKIE:-}
+      NODE_OPTIONS: "--max-old-space-size=4096"
     env_file:
       - .env
     volumes:
@@ -83,6 +84,7 @@ services:
       CLAUDE_AI_SESSION_KEY: ${CLAUDE_AI_SESSION_KEY:-}
       CLAUDE_WEB_SESSION_KEY: ${CLAUDE_WEB_SESSION_KEY:-}
       CLAUDE_WEB_COOKIE: ${CLAUDE_WEB_COOKIE:-}
+      NODE_OPTIONS: "--max-old-space-size=4096"
     volumes:
       - /opt/openclaw/config:/home/node/.openclaw
       - /opt/openclaw/workspaces:/home/node/.openclaw/workspaces
