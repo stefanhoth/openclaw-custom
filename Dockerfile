@@ -51,12 +51,13 @@ RUN curl -o /app/CHANGELOG.md https://raw.githubusercontent.com/openclaw/opencla
 
 # npm packages in one layer; clean cache immediately to keep layer small
 # Full playwright (not playwright-core) — required for playwright API to work correctly
-RUN npm install -g mcporter playwright @steipete/summarize \
+RUN npm install -g mcporter playwright @playwright/cli@latest @steipete/summarize \
     && npm cache clean --force
 
 # Playwright browser binaries as node user, system deps as root
 USER node
 RUN npx playwright install chromium
+RUN playwright-cli install --skills
 
 USER root
 RUN npx playwright install-deps chromium \
