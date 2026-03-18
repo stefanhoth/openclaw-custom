@@ -59,6 +59,9 @@ USER node
 RUN npx playwright install chromium
 RUN playwright-cli install --skills
 
+# Easier obsidian frontmatter editing
+RUN echo "PATH=$PATH:/home/node/go/bin" >> /home/node/.bashrc && go install github.com/marad/frontmatter@latest
+
 USER root
 RUN npx playwright install-deps chromium \
     && apt-get clean \
