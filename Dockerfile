@@ -1,9 +1,9 @@
 # ARG must be declared before first FROM to be usable in FROM instructions
 ARG BASE_IMAGE=ghcr.io/openclaw/openclaw:2026.3.13-1 
 
-FROM golang:1.26-alpine AS blogwatcher-builder
+FROM golang:1.26-alpine AS go-builder
 RUN go install github.com/Hyaxia/blogwatcher/cmd/blogwatcher@latest
-
+RUN go install github.com/marad/frontmatter@latest
 FROM ${BASE_IMAGE}
 
 USER root
@@ -44,10 +44,9 @@ RUN pip3 install openai-whisper --break-system-packages --no-cache-dir \
     && python3 -c "import whisper; whisper.load_model('base')"
 
 # blogwatcher (busts only when the Go binary changes)
-COPY --from=blogwatcher-builder /go/bin/blogwatcher /usr/local/bin/blogwatcher
-
-# Download CHANGELOG from upstream openclaw repo
-RUN curl -o /app/CHANGELOG.md https://raw.githubusercontent.com/openclaw/openclaw/main/CHANGELOG.md
+COPY --from=go-builder /go/bin/blogwatcher /usr/local/bin/blogwatcher
+# Easier obsidian frontmatter editing
+COPY --from=go-builder /go/bin/frontmatter /usr/local/bin/frontmatter
 
 # npm packages in one layer; clean cache immediately to keep layer small
 # Full playwright (not playwright-core) — required for playwright API to work correctly
@@ -58,9 +57,6 @@ RUN npm install -g mcporter playwright @playwright/cli@latest @steipete/summariz
 USER node
 RUN npx playwright install chromium
 RUN playwright-cli install --skills
-
-# Easier obsidian frontmatter editing
-RUN echo "PATH=$PATH:/home/node/go/bin" >> /home/node/.bashrc && go install github.com/marad/frontmatter@latest
 
 USER root
 RUN npx playwright install-deps chromium \
@@ -74,3 +70,5 @@ RUN ln -s $(find /home/node/.cache/ms-playwright -name "chrome" -path "*/chrome-
 RUN sed -i '3i umask 0002' /usr/local/bin/docker-entrypoint.sh
 
 USER node
+# Download CHANGELOG from upstream openclaw repo
+RUN curl -o /app/CHANGELOG.md https://raw.githubusercontent.com/openclaw/openclaw/main/CHANGELOG.md
