@@ -1,5 +1,5 @@
 # ARG must be declared before first FROM to be usable in FROM instructions
-ARG BASE_IMAGE=ghcr.io/openclaw/openclaw:2026.3.13-1 
+ARG BASE_IMAGE=ghcr.io/openclaw/openclaw:2026.3.28 
 
 FROM golang:1.26-alpine AS go-builder
 RUN go install github.com/Hyaxia/blogwatcher/cmd/blogwatcher@latest
