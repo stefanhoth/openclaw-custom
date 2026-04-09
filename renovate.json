@@ -10,7 +10,9 @@
         "ghcr.io/openclaw/openclaw",
         "openclaw/openclaw"
       ],
-      "groupName": "openclaw base image"
+      "groupName": "openclaw base image",
+      "semanticCommitType": "feat",
+      "semanticCommitScope": "openclaw"
     }
   ],
   "customManagers": [
