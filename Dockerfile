@@ -1,7 +1,7 @@
 # ARG must be declared before first FROM to be usable in FROM instructions
 ARG BASE_IMAGE=ghcr.io/openclaw/openclaw:2026.4.12 
 
-FROM golang:1.26-alpine AS go-builder
+FROM golang:1.27-alpine AS go-builder
 RUN go install github.com/Hyaxia/blogwatcher/cmd/blogwatcher@latest
 RUN go install github.com/marad/frontmatter@latest
 FROM ${BASE_IMAGE}
