@@ -50,7 +50,7 @@ COPY --from=go-builder /go/bin/frontmatter /usr/local/bin/frontmatter
 
 # npm packages in one layer; clean cache immediately to keep layer small
 # Full playwright (not playwright-core) — required for playwright API to work correctly
-RUN npm install -g mcporter playwright @playwright/cli@latest @steipete/summarize \
+RUN npm install -g mcporter playwright @playwright/cli@latest @steipete/summarize node-llama-cpp \
     && npm cache clean --force
 
 # Playwright browser binaries as node user, system deps as root
